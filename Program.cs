@@ -1,6 +1,7 @@
 ﻿using System;
+using Tabuleiro;
 
-namespace SistemaJogoDeXadrez // Note: actual namespace depends on the project name.
+namespace SistemaJogoDeXadrez 
 {
     internal class Program
     {
