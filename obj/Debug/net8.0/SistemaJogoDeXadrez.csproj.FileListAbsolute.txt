@@ -1,0 +1,15 @@
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\bin\Debug\net8.0\SistemaJogoDeXadrez.exe
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\bin\Debug\net8.0\SistemaJogoDeXadrez.deps.json
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\bin\Debug\net8.0\SistemaJogoDeXadrez.runtimeconfig.json
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\bin\Debug\net8.0\SistemaJogoDeXadrez.dll
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\bin\Debug\net8.0\SistemaJogoDeXadrez.pdb
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\SistemaJogoDeXadrez.GeneratedMSBuildEditorConfig.editorconfig
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\SistemaJogoDeXadrez.AssemblyInfoInputs.cache
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\SistemaJogoDeXadrez.AssemblyInfo.cs
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\SistemaJogoDeXadrez.csproj.CoreCompileInputs.cache
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\SistemaJogoDeXadrez.sourcelink.json
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\SistemaJogoDeXadrez.dll
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\refint\SistemaJogoDeXadrez.dll
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\SistemaJogoDeXadrez.pdb
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\SistemaJogoDeXadrez.genruntimeconfig.cache
+D:\AprendaAProgramar\Projetos e Cursos do PC\Projetos Pessoais\SistemaJogoDeXadrez\obj\Debug\net8.0\ref\SistemaJogoDeXadrez.dll
