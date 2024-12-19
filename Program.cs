@@ -10,20 +10,31 @@ namespace SistemaJogoDeXadrez
     {
         static void Main(string[] args)
         {
-            Tabuleiro tab = new Tabuleiro(8, 8);
-            
          try
             {
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
+                PartidaDeXadrez partida = new PartidaDeXadrez();
+               while(!partida.terminada)
+               {
+                 Console.Clear();
+                 Tela.imprimirTabuleiro(partida.GetTab());
 
-                tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(3, 5));
-                tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(2, 3));
-                tab.colocarPeca(new Rei(tab, Cor.Branca), new Posicao(1, 2));
+                 Console.WriteLine();
+                 Console.WriteLine("Origem: ");
+                 Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
 
-                Tela.imprimirTabuleiro(tab);
-           }
+                 
+                 bool[,] posicoesPossiveis = partida.GetTab().peca(origem).movimentosPossiveis();
+                 
+                 Console.Clear();
+                 Tela.imprimirTabuleiro(partida.GetTab(), posicoesPossiveis);
+                 
+                 Console.Write("Destino:");
+                 Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
+
+                 partida.executaMovimento(origem, destino);
+               }
+        
+            }
            catch(TabuleiroExeption e)
            {
                 Console.WriteLine(e.Message);
