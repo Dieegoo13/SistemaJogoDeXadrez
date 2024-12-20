@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using SistemaJogoDeXadrez.tabuleiro;
 using SistemaJogoDeXadrez.xadrez;
@@ -14,6 +15,7 @@ namespace xadrez
         public int turno {get; private set;}
         public Cor jogadorAtual {get; private set;}
         public bool terminada {get; private set;}
+        public bool xeque {get; private set;}
         private HashSet<Peca> pecas;
         private HashSet<Peca> capturadas;
 
@@ -30,12 +32,13 @@ namespace xadrez
             turno = 1;
             jogadorAtual = Cor.Branca;
             terminada = false;
+            xeque = false;
             pecas = new HashSet<Peca>();
             capturadas = new HashSet<Peca>();
             colocarPecas();
         }
 
-        public void executaMovimento(Posicao origem, Posicao destino)
+        public Peca executaMovimento(Posicao origem, Posicao destino)
         {
             Peca p = tab.retirarPeca(origem);
             p.incrementarQteMovimentos();
@@ -46,10 +49,36 @@ namespace xadrez
             {
                 capturadas.Add(pecaCapturada);
             }
+
+            return pecaCapturada;
         }
 
-        public void realizaJogada(Posicao origem, Posicao destinio){
-            executaMovimento(origem, destinio);
+        public void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada){
+            Peca p = tab.retirarPeca(destino);
+            p.decrementarQteMovimentos();
+
+            if(pecaCapturada != null){
+                tab.colocarPeca(pecaCapturada, destino);
+                capturadas.Remove(pecaCapturada);
+            }
+
+            tab.colocarPeca(p, origem);
+        }
+
+        public void realizaJogada(Posicao origem, Posicao destino){
+            Peca pecaCapturada = executaMovimento(origem, destino);
+
+            if(estaEmXeque(jogadorAtual)){
+                desfazMovimento(origem, destino, pecaCapturada);
+                throw new TabuleiroExeption("Você não pode se colocar em xeque!");
+            }
+
+            if (estaEmXeque(adversaria(jogadorAtual))){
+                xeque = true;
+            }
+            else {
+                xeque = false;
+            }
             turno++;
             mudaJogador();
         }
@@ -93,19 +122,54 @@ namespace xadrez
             return aux;
         }
 
-        public HashSet<Peca> PecasEmJogo(Cor cor){
-        HashSet<Peca> aux = new HashSet<Peca>();
+         public HashSet<Peca> PecasEmJogo(Cor cor){
+            HashSet<Peca> aux = new HashSet<Peca>();
 
-            foreach (Peca x in capturadas)
-            {
-                if(x.cor == cor){
+            foreach (Peca x in pecas) { // Aqui estava o problema: usar "pecas" ao invés de "capturadas"
+                if (x.cor == cor) {
                     aux.Add(x);
                 }
             }
 
-            aux.ExceptWith(pecasCapturadas(cor));
-
+            aux.ExceptWith(pecasCapturadas(cor)); // Remove as capturadas
             return aux;
+        }
+
+
+        private Cor adversaria(Cor cor){
+            if(cor == Cor.Branca){
+                return Cor.Preta;
+            }else {
+                return Cor.Branca;
+            }
+        }
+
+        private Peca rei (Cor cor){
+            foreach(Peca x in PecasEmJogo(cor))
+            {
+                if(x is Rei){
+                    return x;
+                }
+            }
+
+            return null;
+        }
+
+        public bool estaEmXeque(Cor cor){
+
+            Peca R = rei(cor);
+            if (R == null){
+                throw new TabuleiroExeption($"Não tem rei da cor {cor} No tabuleiro!");
+            }
+
+            foreach (Peca x in PecasEmJogo(adversaria(cor))){
+                bool[,] mat = x.movimentosPossiveis();
+                if(mat[R.posicao.linha, R.posicao.coluna]){
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void colocarNovaPeca(char coluna, int linha, Peca peca){
