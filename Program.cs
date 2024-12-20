@@ -19,10 +19,7 @@ namespace SistemaJogoDeXadrez
                     try
                     {
                         Console.Clear();
-                        Tela.imprimirTabuleiro(partida.GetTab());
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partida.turno);
-                        Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+                        Tela.imprimirPartida(partida);
 
                         Console.WriteLine();
                         Console.WriteLine("Origem: ");
